@@ -1,0 +1,56 @@
+
+#include<float.h>
+#include <stdio.h>
+#include<math.h>
+struct Trail{
+    char name[10][20];
+    int age[10];
+    int gender[10];
+    char sports[10][10];
+};
+int main()
+{
+    // printf("Hello World");
+    struct Trail d;
+    int no;
+    printf("Enter no. of tuples ot training");
+    scanf("%d",&no);
+    for(int i=0;i<no;i++){
+        printf("\nEnter Name :");
+        scanf("%s",d.name[i]);
+        printf("\nEnter Age :");
+        scanf("%d",&d.age[i]);
+        printf("\nEnter Gender :");
+        scanf("%d",&d.gender[i]);
+        printf("\nEnter Sports :");
+        scanf("%s",d.sports[i]);
+    }
+    printf("\n Data Entered is : \n");
+    printf("\nName\tAge\tGender\tSports");
+    for(int i=0;i<no;i++){
+        printf("\n %s\t%d\t%d\t%s",d.name[i],d.age[i],d.gender[i],d.sports[i]);
+    }
+    printf("\nEnter name,age,gender to classify");
+    int a,g;
+    char nam[10];
+    printf("\nEnter Name :");
+    scanf("%s",nam);
+    printf("\nEnter Age :");
+    scanf("%d",&a);
+    printf("\nEnter Gender :");
+    scanf("%d",&g);
+    float min=FLT_MAX,v=0;
+    int k;
+    printf("\nThe Entered values are");
+    printf("\n%s\t%d\t%d",nam,a,g);
+    for(int i=0;i<no;i++){
+        v=sqrt(pow((a-d.age[i]),2)+pow((g-d.gender[i]),2));
+        if(v<min){
+            min=v;
+            k=i;
+        }
+    }
+    printf("\n the Minimun Distance is %f",min);
+    printf("\nThe Tuple belongs to %s Class",d.sports[k]);
+    return 0;
+}
